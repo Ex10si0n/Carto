@@ -7,14 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5803ACE82C1CDDEB006EB17B /* CartoMapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5803ACE72C1CDDEB006EB17B /* CartoMapManager.swift */; };
+		5803ACEA2C1CEEDE006EB17B /* CartoCollectionEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5803ACE92C1CEEDE006EB17B /* CartoCollectionEditView.swift */; };
 		5836774F2C14F9F3002A9E4B /* CartoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5836774E2C14F9F3002A9E4B /* CartoApp.swift */; };
 		583677512C14F9F3002A9E4B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583677502C14F9F3002A9E4B /* ContentView.swift */; };
-		583677532C14F9F3002A9E4B /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583677522C14F9F3002A9E4B /* Item.swift */; };
+		583677532C14F9F3002A9E4B /* CartoCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583677522C14F9F3002A9E4B /* CartoCollection.swift */; };
 		583677552C14F9F4002A9E4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 583677542C14F9F4002A9E4B /* Assets.xcassets */; };
 		583677592C14F9F4002A9E4B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 583677582C14F9F4002A9E4B /* Preview Assets.xcassets */; };
 		583677632C14F9F4002A9E4B /* CartoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583677622C14F9F4002A9E4B /* CartoTests.swift */; };
 		5836776D2C14F9F4002A9E4B /* CartoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5836776C2C14F9F4002A9E4B /* CartoUITests.swift */; };
 		5836776F2C14F9F4002A9E4B /* CartoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5836776E2C14F9F4002A9E4B /* CartoUITestsLaunchTests.swift */; };
+		5836777D2C14FC22002A9E4B /* CartoMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5836777C2C14FC22002A9E4B /* CartoMapView.swift */; };
+		583677802C150533002A9E4B /* CartoLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5836777F2C150533002A9E4B /* CartoLocationManager.swift */; };
+		583677832C15091C002A9E4B /* CartoNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583677822C15091C002A9E4B /* CartoNote.swift */; };
+		583677852C1510E1002A9E4B /* CartoCollectionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583677842C1510E1002A9E4B /* CartoCollectionListView.swift */; };
+		583677872C1688C3002A9E4B /* CartoCollectionMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583677862C1688C3002A9E4B /* CartoCollectionMapView.swift */; };
+		58A6C5AF2C1E260D00728A8C /* CartoCollectionCustomizeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A6C5AE2C1E260D00728A8C /* CartoCollectionCustomizeView.swift */; };
+		58A6C5B32C1E654900728A8C /* CartoCollectionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A6C5B22C1E654900728A8C /* CartoCollectionCategory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,10 +44,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5803ACE72C1CDDEB006EB17B /* CartoMapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartoMapManager.swift; sourceTree = "<group>"; };
+		5803ACE92C1CEEDE006EB17B /* CartoCollectionEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartoCollectionEditView.swift; sourceTree = "<group>"; };
 		5836774B2C14F9F3002A9E4B /* Carto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Carto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5836774E2C14F9F3002A9E4B /* CartoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartoApp.swift; sourceTree = "<group>"; };
 		583677502C14F9F3002A9E4B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		583677522C14F9F3002A9E4B /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		583677522C14F9F3002A9E4B /* CartoCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartoCollection.swift; sourceTree = "<group>"; };
 		583677542C14F9F4002A9E4B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		583677562C14F9F4002A9E4B /* Carto.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Carto.entitlements; sourceTree = "<group>"; };
 		583677582C14F9F4002A9E4B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -47,6 +58,13 @@
 		583677682C14F9F4002A9E4B /* CartoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CartoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5836776C2C14F9F4002A9E4B /* CartoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartoUITests.swift; sourceTree = "<group>"; };
 		5836776E2C14F9F4002A9E4B /* CartoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartoUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		5836777C2C14FC22002A9E4B /* CartoMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartoMapView.swift; sourceTree = "<group>"; };
+		5836777F2C150533002A9E4B /* CartoLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartoLocationManager.swift; sourceTree = "<group>"; };
+		583677822C15091C002A9E4B /* CartoNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartoNote.swift; sourceTree = "<group>"; };
+		583677842C1510E1002A9E4B /* CartoCollectionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartoCollectionListView.swift; sourceTree = "<group>"; };
+		583677862C1688C3002A9E4B /* CartoCollectionMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartoCollectionMapView.swift; sourceTree = "<group>"; };
+		58A6C5AE2C1E260D00728A8C /* CartoCollectionCustomizeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartoCollectionCustomizeView.swift; sourceTree = "<group>"; };
+		58A6C5B22C1E654900728A8C /* CartoCollectionCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartoCollectionCategory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,9 +115,11 @@
 		5836774D2C14F9F3002A9E4B /* Carto */ = {
 			isa = PBXGroup;
 			children = (
+				583677812C150682002A9E4B /* Models */,
+				5836777E2C150518002A9E4B /* Helpers */,
+				5836777B2C14FBEE002A9E4B /* Views */,
 				5836774E2C14F9F3002A9E4B /* CartoApp.swift */,
 				583677502C14F9F3002A9E4B /* ContentView.swift */,
-				583677522C14F9F3002A9E4B /* Item.swift */,
 				583677542C14F9F4002A9E4B /* Assets.xcassets */,
 				583677562C14F9F4002A9E4B /* Carto.entitlements */,
 				583677572C14F9F4002A9E4B /* Preview Content */,
@@ -130,6 +150,61 @@
 				5836776E2C14F9F4002A9E4B /* CartoUITestsLaunchTests.swift */,
 			);
 			path = CartoUITests;
+			sourceTree = "<group>";
+		};
+		5836777B2C14FBEE002A9E4B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				58A6C5B42C1E835C00728A8C /* Notes */,
+				58A6C5AD2C1E25D500728A8C /* Carto */,
+				585F309A2C1E258C0019B66B /* Collections */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5836777E2C150518002A9E4B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				5836777F2C150533002A9E4B /* CartoLocationManager.swift */,
+				5803ACE72C1CDDEB006EB17B /* CartoMapManager.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		583677812C150682002A9E4B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				583677522C14F9F3002A9E4B /* CartoCollection.swift */,
+				583677822C15091C002A9E4B /* CartoNote.swift */,
+				58A6C5B22C1E654900728A8C /* CartoCollectionCategory.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		585F309A2C1E258C0019B66B /* Collections */ = {
+			isa = PBXGroup;
+			children = (
+				583677862C1688C3002A9E4B /* CartoCollectionMapView.swift */,
+				583677842C1510E1002A9E4B /* CartoCollectionListView.swift */,
+				5803ACE92C1CEEDE006EB17B /* CartoCollectionEditView.swift */,
+				58A6C5AE2C1E260D00728A8C /* CartoCollectionCustomizeView.swift */,
+			);
+			path = Collections;
+			sourceTree = "<group>";
+		};
+		58A6C5AD2C1E25D500728A8C /* Carto */ = {
+			isa = PBXGroup;
+			children = (
+				5836777C2C14FC22002A9E4B /* CartoMapView.swift */,
+			);
+			path = Carto;
+			sourceTree = "<group>";
+		};
+		58A6C5B42C1E835C00728A8C /* Notes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Notes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,8 +337,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				583677802C150533002A9E4B /* CartoLocationManager.swift in Sources */,
+				5836777D2C14FC22002A9E4B /* CartoMapView.swift in Sources */,
 				583677512C14F9F3002A9E4B /* ContentView.swift in Sources */,
-				583677532C14F9F3002A9E4B /* Item.swift in Sources */,
+				583677832C15091C002A9E4B /* CartoNote.swift in Sources */,
+				5803ACEA2C1CEEDE006EB17B /* CartoCollectionEditView.swift in Sources */,
+				583677532C14F9F3002A9E4B /* CartoCollection.swift in Sources */,
+				58A6C5AF2C1E260D00728A8C /* CartoCollectionCustomizeView.swift in Sources */,
+				58A6C5B32C1E654900728A8C /* CartoCollectionCategory.swift in Sources */,
+				583677872C1688C3002A9E4B /* CartoCollectionMapView.swift in Sources */,
+				5803ACE82C1CDDEB006EB17B /* CartoMapManager.swift in Sources */,
+				583677852C1510E1002A9E4B /* CartoCollectionListView.swift in Sources */,
 				5836774F2C14F9F3002A9E4B /* CartoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -424,8 +508,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Carto/Preview Content\"";
+				DEVELOPMENT_TEAM = JA396LY6BC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "The app needs access to your location to provide location-based services.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -460,8 +546,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Carto/Preview Content\"";
+				DEVELOPMENT_TEAM = JA396LY6BC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "The app needs access to your location to provide location-based services.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
