@@ -36,7 +36,7 @@ struct CartoCollectionEditView: View {
                 
                 Section(header: Text("Notes")) {
                     ForEach(editingCollection.notes) { note in
-                        NavigationLink(destination: CartoNoteEditView(editingNote: note)) {
+                        NavigationLink(destination: CartoNoteEditView(editingNote: note, collection: editingCollection)) {
                             Text(note.title)
                                 .swipeActions {
                                     Button() {

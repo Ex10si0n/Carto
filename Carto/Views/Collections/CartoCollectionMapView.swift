@@ -47,8 +47,8 @@ struct CartoCollectionMapView: View {
                 }.tag(note)
             }
         }
-        .sheet(item: $selectedNote) { selectedNote in
-            Text(selectedNote.title)
+        .sheet(item: $selectedNote) { selectedNote in  
+            CartoNoteEditView(editingNote: selectedNote, collection: collection)
                 .presentationDetents([.medium, .large])
         }
         .navigationTitle(collection.title)
@@ -60,7 +60,6 @@ struct CartoCollectionMapView: View {
                     searchText: searchText,
                     visibleRegion: visibleRegion
                 )
-                //                    cameraPosition = .automatic
             }
         }
         .onChange(of: searchText) { oldState, newState in

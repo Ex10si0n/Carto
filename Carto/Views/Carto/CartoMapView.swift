@@ -13,20 +13,28 @@ struct CartoMapView: View {
     
     @State private var cameraPosition: MapCameraPosition = .automatic
     @Query private var collections: [CartoCollection]
+    @State private var selectedNote: CartoNote?
     
     @StateObject private var locationManager = CartoLocationManager()
     
     var body: some View {
-        Map(position: $cameraPosition){
+        
+        Map(position: $cameraPosition, selection: $selectedNote){
             
             ForEach(collections) { collection in
                 ForEach(collection.notes) { note in
                     Marker(coordinate: note.coordinate) {
                         Label(note.title, systemImage: note.collection?.category?.sfIcon ?? "")
                     }.tint(Color.fromHex(collection.colorHex ?? Color.accentColor.toHex()))
+                        .tag(note)
                 }
             }
-        }.onAppear {
+        }
+        .sheet(item: $selectedNote) { selectedNote in
+            CartoNoteEditView(editingNote: selectedNote, collection: selectedNote.collection!)
+                .presentationDetents([.medium, .large])
+        }
+        .onAppear {
             // get user location
             locationManager.checkLocationAuthorization()
             
