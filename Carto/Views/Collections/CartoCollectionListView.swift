@@ -68,9 +68,10 @@ struct CartoCollectionListView: View {
                 }
                 .alert("Enter Collection Name", isPresented: $newCollection) {
                     TextField("Enter collection name", text: $collectionTitle)
+                        .autocorrectionDisabled()
                     Button("OK") {
                         if !collectionTitle.isEmpty {
-                            let collection = CartoCollection(title: collectionTitle)
+                            let collection = CartoCollection(title: collectionTitle.trimmingCharacters(in: .whitespacesAndNewlines))
                             modelContext.insert(collection)
                             collectionTitle = ""
                             path.append(collection)

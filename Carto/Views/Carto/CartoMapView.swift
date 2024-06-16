@@ -31,7 +31,8 @@ struct CartoMapView: View {
             locationManager.checkLocationAuthorization()
             
             let coordinate = locationManager.lastKnownLocation
-            let span = MKCoordinateSpan(latitudeDelta: 180, longitudeDelta: 180)
+            let delta: Double = 180
+            let span = MKCoordinateSpan(latitudeDelta: delta, longitudeDelta: delta)
             let region = MKCoordinateRegion(center: coordinate!, span: span)
             cameraPosition = .region(region)
             

@@ -24,6 +24,7 @@
 		583677872C1688C3002A9E4B /* CartoCollectionMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583677862C1688C3002A9E4B /* CartoCollectionMapView.swift */; };
 		58A6C5AF2C1E260D00728A8C /* CartoCollectionCustomizeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A6C5AE2C1E260D00728A8C /* CartoCollectionCustomizeView.swift */; };
 		58A6C5B32C1E654900728A8C /* CartoCollectionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A6C5B22C1E654900728A8C /* CartoCollectionCategory.swift */; };
+		58A6C5B62C1E851600728A8C /* CartoNoteEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A6C5B52C1E851600728A8C /* CartoNoteEditView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		583677862C1688C3002A9E4B /* CartoCollectionMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartoCollectionMapView.swift; sourceTree = "<group>"; };
 		58A6C5AE2C1E260D00728A8C /* CartoCollectionCustomizeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartoCollectionCustomizeView.swift; sourceTree = "<group>"; };
 		58A6C5B22C1E654900728A8C /* CartoCollectionCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartoCollectionCategory.swift; sourceTree = "<group>"; };
+		58A6C5B52C1E851600728A8C /* CartoNoteEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartoNoteEditView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +205,7 @@
 		58A6C5B42C1E835C00728A8C /* Notes */ = {
 			isa = PBXGroup;
 			children = (
+				58A6C5B52C1E851600728A8C /* CartoNoteEditView.swift */,
 			);
 			path = Notes;
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 				583677802C150533002A9E4B /* CartoLocationManager.swift in Sources */,
 				5836777D2C14FC22002A9E4B /* CartoMapView.swift in Sources */,
 				583677512C14F9F3002A9E4B /* ContentView.swift in Sources */,
+				58A6C5B62C1E851600728A8C /* CartoNoteEditView.swift in Sources */,
 				583677832C15091C002A9E4B /* CartoNote.swift in Sources */,
 				5803ACEA2C1CEEDE006EB17B /* CartoCollectionEditView.swift in Sources */,
 				583677532C14F9F3002A9E4B /* CartoCollection.swift in Sources */,

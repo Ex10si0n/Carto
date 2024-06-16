@@ -18,6 +18,7 @@ struct CartoCollectionMapView: View {
     @State private var visibleRegion: MKCoordinateRegion?
     @State private var searchText = ""
     @State private var searchFieldFocus = false
+    @State private var selectedNote: CartoNote?
     @Query(filter: #Predicate<CartoNote> { $0.collection == nil}) private var searchPlaces: [CartoNote]
     
     private var listPlaces: [CartoNote] {
@@ -28,59 +29,71 @@ struct CartoCollectionMapView: View {
     
     var body: some View {
         @Bindable var collection = collection
-        Map(position: $cameraPosition){
+        Map(position: $cameraPosition, selection: $selectedNote){
             ForEach(listPlaces) { note in
-                if note.collection != nil {
-                    Marker(coordinate: note.coordinate) {
-                        Label(note.title, systemImage: collection.category?.sfIcon ?? "flag.circle.fill")
-                    }.tint(Color.fromHex(collection.colorHex ?? Color.accentColor.toHex()))
-                } else {
-                    Marker(note.title, coordinate: note.coordinate)
-                }
-                
+                Group {
+                    if note.collection != nil {
+                        Marker(coordinate: note.coordinate) {
+                            Label(note.title, systemImage: collection.category?.sfIcon ?? "flag.circle.fill")
+                        }
+                        .tint(Color.fromHex(collection.colorHex ?? Color.accentColor.toHex()))
+                    } else {
+                        Marker(coordinate: note.coordinate) {
+                            Label(note.title, systemImage: "pencil.line")
+                        }
+                        .tint(.red)
+                    }
+                    
+                }.tag(note)
             }
-        }.navigationTitle(collection.title)
-            .searchable(text: $searchText, isPresented: $searchFieldFocus, prompt: "Seach a place to add new note")
-            .onSubmit(of: .search) {
-                Task {
-                    await CartoMapManager.searchPlaces(
-                        modelContext,
-                        searchText: searchText,
-                        visibleRegion: visibleRegion
-                    )
-                }
+        }
+        .sheet(item: $selectedNote) { selectedNote in
+            Text(selectedNote.title)
+                .presentationDetents([.medium, .large])
+        }
+        .navigationTitle(collection.title)
+        .searchable(text: $searchText, isPresented: $searchFieldFocus, prompt: "Seach a place to add new note")
+        .onSubmit(of: .search) {
+            Task {
+                await CartoMapManager.searchPlaces(
+                    modelContext,
+                    searchText: searchText,
+                    visibleRegion: visibleRegion
+                )
+                //                    cameraPosition = .automatic
             }
-            .onChange(of: searchText) { oldState, newState in
-                if searchText.isEmpty && !isSearching {
-                    CartoMapManager.removeSearchResults(modelContext)
-                }
-            }
-            .navigationBarTitleDisplayMode(.inline)
-            .onMapCameraChange(frequency: .onEnd) { context in
-                visibleRegion = context.region
-                if let visibleRegion {
-                    collection.latitude = visibleRegion.center.latitude
-                    collection.longtitude = visibleRegion.center.longitude
-                    collection.latitudeDelta = visibleRegion.span.longitudeDelta
-                    collection.longtitudeDelta = visibleRegion.span.longitudeDelta
-                }
-            }
-            .onAppear {
-                if let region = collection.region {
-                    cameraPosition = .region(region)
-                }
-            }
-            .onDisappear {
+        }
+        .onChange(of: searchText) { oldState, newState in
+            if searchText.isEmpty && !isSearching {
                 CartoMapManager.removeSearchResults(modelContext)
             }
-            .toolbar {
-                Button {
-                    searchFieldFocus = true
-                } label: {
-                    Image(systemName: "note.text.badge.plus")
-                        .symbolRenderingMode(.hierarchical)
-                }
+        }
+        .navigationBarTitleDisplayMode(.inline)
+        .onMapCameraChange(frequency: .onEnd) { context in
+            visibleRegion = context.region
+            if let visibleRegion {
+                collection.latitude = visibleRegion.center.latitude
+                collection.longtitude = visibleRegion.center.longitude
+                collection.latitudeDelta = visibleRegion.span.longitudeDelta
+                collection.longtitudeDelta = visibleRegion.span.longitudeDelta
             }
+        }
+        .onAppear {
+            if let region = collection.region {
+                cameraPosition = .region(region)
+            }
+        }
+        .onDisappear {
+            CartoMapManager.removeSearchResults(modelContext)
+        }
+        .toolbar {
+            Button {
+                searchFieldFocus = true
+            } label: {
+                Image(systemName: "note.text.badge.plus")
+                    .symbolRenderingMode(.hierarchical)
+            }
+        }
         
     }
     

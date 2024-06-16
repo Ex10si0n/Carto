@@ -21,6 +21,7 @@ struct CartoCollectionEditView: View {
             Form {
                 Section(header: Text("Collection Title")) {
                     TextField(editingCollection.title, text: $editingCollection.title)
+                        .autocorrectionDisabled()
                 }
                 Section(header: Text("Customize")) {
                     NavigationLink (destination: CartoCollectionCustomizeView(editingCollection: editingCollection)) {
@@ -35,14 +36,16 @@ struct CartoCollectionEditView: View {
                 
                 Section(header: Text("Notes")) {
                     ForEach(editingCollection.notes) { note in
-                        Text(note.title)
-                            .swipeActions {
-                                Button() {
-                                    // TODO: implement deletion
-                                } label: {
-                                    Label("Delete", systemImage: "trash")
-                                }.tint(.red)
-                            }
+                        NavigationLink(destination: CartoNoteEditView(editingNote: note)) {
+                            Text(note.title)
+                                .swipeActions {
+                                    Button() {
+                                        // TODO: implement deletion
+                                    } label: {
+                                        Label("Delete", systemImage: "trash")
+                                    }.tint(.red)
+                                }
+                        }
                     }
                 }
             }.onAppear {
@@ -52,19 +55,19 @@ struct CartoCollectionEditView: View {
         .alert("Save Failed", isPresented: $isShowingAlert) {} message: {
             Text("Please enter a title for the collection")
         }
-//        .navigationTitle(editingCollection.title)
-        .navigationBarTitleDisplayMode(.inline)
-//        .toolbar {
-//            Button {
-//                if newTitle.isEmpty {
-//                    isShowingAlert = true
-//                } else {
-//                    editingCollection.title = newTitle
-//                }
-//            } label: {
-//                Text("Save")
-//            }
-//        }
+        //        .navigationTitle(editingCollection.title)
+                .navigationBarTitleDisplayMode(.inline)
+        //        .toolbar {
+        //            Button {
+        //                if newTitle.isEmpty {
+        //                    isShowingAlert = true
+        //                } else {
+        //                    editingCollection.title = newTitle
+        //                }
+        //            } label: {
+        //                Text("Save")
+        //            }
+        //        }
     }
 }
 
