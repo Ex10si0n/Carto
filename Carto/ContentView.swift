@@ -9,28 +9,41 @@ import SwiftUI
 import SwiftData
 import MapKit
 
+enum Tab {
+    case carto
+    case collections
+    case milestones
+    case featured
+}
+
 struct ContentView: View {
-    
+    @State private var selectedTab: Tab = .carto
+
     var body: some View {
-        TabView {
-            Group {
-                CartoMapView()
-                    .tabItem {
-                        Label("Carto", systemImage: "globe.asia.australia.fill")
-                    }
-                CartoCollectionListView()
-                    .tabItem {
-                        Label("Collections", systemImage: "book.pages.fill")
-                    }
-                Text("Milestones shows here")
-                    .tabItem {
-                        Label("Milestones", systemImage: "party.popper.fill")
-                    }
-                Text("Featured")
-                    .tabItem {
-                        Label("Featured", systemImage: "doc.text.image")
-                    }
-            }
+        TabView(selection: $selectedTab) {
+            CartoMapView()
+                .tabItem {
+                    Label("Carto", systemImage: "globe.asia.australia.fill")
+                }
+                .tag(Tab.carto)
+            
+            CartoCollectionListView()
+                .tabItem {
+                    Label("Collections", systemImage: "book.pages.fill")
+                }
+                .tag(Tab.collections)
+            
+            Text("Milestones shows here")
+                .tabItem {
+                    Label("Milestones", systemImage: "party.popper.fill")
+                }
+                .tag(Tab.milestones)
+            
+            Text("Featured")
+                .tabItem {
+                    Label("Featured", systemImage: "doc.text.image")
+                }
+                .tag(Tab.featured)
         }
     }
 }

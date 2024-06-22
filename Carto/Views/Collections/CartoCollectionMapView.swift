@@ -19,6 +19,7 @@ struct CartoCollectionMapView: View {
     @State private var searchText = ""
     @State private var searchFieldFocus = false
     @State private var selectedNote: CartoNote?
+    @State private var isManualMarker = false
     @Query(filter: #Predicate<CartoNote> { $0.collection == nil}) private var searchPlaces: [CartoNote]
     
     private var listPlaces: [CartoNote] {
@@ -29,27 +30,67 @@ struct CartoCollectionMapView: View {
     
     var body: some View {
         @Bindable var collection = collection
-        Map(position: $cameraPosition, selection: $selectedNote){
-            ForEach(listPlaces) { note in
-                Group {
-                    if note.collection != nil {
-                        Marker(coordinate: note.coordinate) {
-                            Label(note.title, systemImage: collection.category?.sfIcon ?? "flag.circle.fill")
+        MapReader { proxy in
+            Map(position: $cameraPosition, selection: $selectedNote){
+                ForEach(listPlaces) { note in
+                    if isManualMarker {
+                        if note.collection != nil {
+                            Marker(coordinate: note.coordinate) {
+                                Label(note.title, systemImage: collection.category?.sfIcon ?? "flag.circle.fill")
+                            }
+                            .tint(Color.fromHex(collection.colorHex ?? Color.accentColor.toHex()))
+                        } else {
+                            Marker(coordinate: note.coordinate) {
+                                Label(note.title, systemImage: "pencil.line")
+                            }
+                            .tint(.red)
                         }
-                        .tint(Color.fromHex(collection.colorHex ?? Color.accentColor.toHex()))
                     } else {
-                        Marker(coordinate: note.coordinate) {
-                            Label(note.title, systemImage: "pencil.line")
-                        }
-                        .tint(.red)
+                        Group {
+                            if note.collection != nil {
+                                Marker(coordinate: note.coordinate) {
+                                    Label(note.title, systemImage: collection.category?.sfIcon ?? "flag.circle.fill")
+                                }
+                                .tint(Color.fromHex(collection.colorHex ?? Color.accentColor.toHex()))
+                            } else {
+                                Marker(coordinate: note.coordinate) {
+                                    Label(note.title, systemImage: "pencil.line")
+                                }
+                                .tint(.red)
+                            }
+                            
+                        }.tag(note)
                     }
                     
-                }.tag(note)
+                }
+            }
+            .onTapGesture { position in
+                if isManualMarker {
+                    if let coordinate = proxy.convert(position, from: .local) {
+                        let newNote = CartoNote(timestamp: Date(), title: "", systemImage: "", content: "", address: "", latitude: coordinate.latitude, longitude: coordinate.longitude, collection: nil)
+                        modelContext.insert(newNote)
+                        selectedNote = newNote
+                    }
+                }
             }
         }
-        .sheet(item: $selectedNote) { selectedNote in  
+        .sheet(item: $selectedNote, onDismiss: {
+            if isManualMarker {
+                CartoMapManager.removeSearchResults(modelContext)
+            }
+        }) { selectedNote in
             CartoNoteEditView(editingNote: selectedNote, collection: collection)
                 .presentationDetents([.medium, .large])
+        }
+        .safeAreaInset(edge: .top) {
+            Toggle(isOn: $isManualMarker) {
+                Label("Tap to add note is \(isManualMarker ? "ON" : "OFF")", systemImage: isManualMarker ? "mappin.circle" : "mappin.slash.circle")
+            }
+            .fontWeight(.bold)
+            .toggleStyle(.button)
+            .background(.ultraThinMaterial)
+            .clipShape(Capsule())
+            .padding()
         }
         .navigationTitle(collection.title)
         .searchable(text: $searchText, isPresented: $searchFieldFocus, prompt: "Seach a place to add new note")
@@ -87,11 +128,12 @@ struct CartoCollectionMapView: View {
         }
         .toolbar {
             Button {
-                searchFieldFocus = true
+                isManualMarker = true
             } label: {
                 Image(systemName: "note.text.badge.plus")
                     .symbolRenderingMode(.hierarchical)
             }
+            
         }
         
     }

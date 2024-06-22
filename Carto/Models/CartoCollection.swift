@@ -132,10 +132,9 @@ extension CartoCollection {
         container.mainContext.insert(universities)
         var notes: [CartoNote] {
             [
-                CartoNote(timestamp: Date(), title: "Carnegie Mellon", systemImage: "graduationcap.fill", content: "Carnegie Mellon University is a private research university in Pittsburgh, Pennsylvania. The institution was established in 1900 by Andrew Carnegie as the Carnegie Technical Schools. In 1912, it became the Carnegie Institute of Technology and began granting four-year degrees.", address: "5000 Forbes Ave, Pittsburgh, PA 15213", latitude: 40.445037, longitude: -79.945224),
-                CartoNote(timestamp: Date(), title: "University of Pittsburgh", content: "The University of Pittsburgh is a state-related public research university in Pittsburgh, Pennsylvania. It was founded as the Pittsburgh Academy in 1787 on the edge of the American frontier. It developed and was renamed as Western University of Pennsylvania by a change to its charter in 1819.", address: "4200 Fifth Ave, Pittsburgh, PA 15260", latitude: 40.4443, longitude: -79.9626),
+                CartoNote(timestamp: Date(), title: "Columbia University", content: "Columbia University is for testing lookaround view", address: "116th and Broadway, New York, NY 10027, United States", latitude: 40.808040, longitude: -73.961966),
+                CartoNote(timestamp: Date(), title: "Carnegie Mellon University", content: "Carnegie Mellon University is a private research university in Pittsburgh, Pennsylvania. The institution was established in 1900 by Andrew Carnegie as the Carnegie Technical Schools. In 1912, it became the Carnegie Institute of Technology and began granting four-year degrees.", address: "5000 Forbes Ave, Pittsburgh, PA 15213", latitude: 40.445037, longitude: -79.945224)
             ]
-            
         }
         notes.forEach {note in
             universities.notes.append(note)
