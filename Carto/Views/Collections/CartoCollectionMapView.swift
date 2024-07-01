@@ -20,6 +20,7 @@ struct CartoCollectionMapView: View {
     @State private var searchFieldFocus = false
     @State private var selectedNote: CartoNote?
     @State private var isManualMarker = false
+    
     @Query(filter: #Predicate<CartoNote> { $0.collection == nil}) private var searchPlaces: [CartoNote]
     
     private var listPlaces: [CartoNote] {
@@ -63,6 +64,9 @@ struct CartoCollectionMapView: View {
                     }
                     
                 }
+            }
+            .mapControls {
+                MapCompass()
             }
             .onTapGesture { position in
                 if isManualMarker {
@@ -133,8 +137,8 @@ struct CartoCollectionMapView: View {
                 Image(systemName: "note.text.badge.plus")
                     .symbolRenderingMode(.hierarchical)
             }
-            
         }
+        
         
     }
     

@@ -16,11 +16,12 @@ struct CartoMapView: View {
     @State private var selectedNote: CartoNote?
     
     @StateObject private var locationManager = CartoLocationManager()
+    @Namespace private var mapScope
     
     var body: some View {
         
-        Map(position: $cameraPosition, selection: $selectedNote){
-            
+        Map(position: $cameraPosition, selection: $selectedNote, scope: mapScope){
+            UserAnnotation()
             ForEach(collections) { collection in
                 ForEach(collection.notes) { note in
                     Marker(coordinate: note.coordinate) {
@@ -29,6 +30,9 @@ struct CartoMapView: View {
                         .tag(note)
                 }
             }
+        }
+        .mapControls {
+            MapScaleView()
         }
         .sheet(item: $selectedNote) { selectedNote in
             CartoNoteEditView(editingNote: selectedNote, collection: selectedNote.collection!)
@@ -43,8 +47,22 @@ struct CartoMapView: View {
             let span = MKCoordinateSpan(latitudeDelta: delta, longitudeDelta: delta)
             let region = MKCoordinateRegion(center: coordinate!, span: span)
             cameraPosition = .region(region)
+        }
+        .safeAreaInset(edge: .top) {
+            HStack {
+                Spacer()
+                VStack {
+                    MapUserLocationButton(scope: mapScope)
+                    MapCompass(scope: mapScope).mapControlVisibility(.visible)
+                    MapPitchToggle(scope: mapScope)
+                }
+            }
+            .padding()
+            .buttonBorderShape(.circle)
             
-        }.mapStyle(.hybrid(elevation: .realistic))
+        }
+        .mapScope(mapScope)
+        .mapStyle(.hybrid(elevation: .realistic))
     }
     
 }

@@ -15,7 +15,8 @@ struct CartoNoteEditView: View {
     var editingNote: CartoNote
     var collection: CartoCollection
     
-    @State private var lookaroundScene: MKLookAroundScene?
+    @State private var height: CGFloat = 40
+    
     @State private var editingNoteLocal: CartoNote
     
     init(editingNote: CartoNote, collection: CartoCollection) {
@@ -28,19 +29,22 @@ struct CartoNoteEditView: View {
         
         @Bindable var editingNoteLocal = editingNote
         HStack {
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading) {
                     TextField("Title", text: $editingNoteLocal.title, axis: .vertical)
                         .font(.title.bold())
                         .submitLabel(.next)
+                        .padding(.top)
+                        .padding(.horizontal, 5)
                     TextField("Address", text: $editingNoteLocal.address, axis: .vertical)
                         .font(.subheadline)
                         .foregroundColor(Color.fromHex(editingNoteLocal.collection?.colorHex ?? Color.accentColor.toHex()))
+                        .padding(.horizontal, 5)
                     
                     if editingNoteLocal.collection == nil {
-                    HStack {
-                        Spacer()
-                        Button {
+                        HStack {
+                            Spacer()
+                            Button {
                                 editingNoteLocal.collection = collection
                                 collection.notes.append(editingNoteLocal)
                                 dismiss()
@@ -49,32 +53,82 @@ struct CartoNoteEditView: View {
                             }
                             .background(Color.fromHex(editingNoteLocal.collection?.colorHex ?? Color.accentColor.toHex()))
                             .foregroundStyle(Color.white)
-                        .clipShape(Capsule())
-                        Spacer()
-                    }
+                            .clipShape(Capsule())
+                            Spacer()
+                        }
                         
                     } else {
-                        TextEditor(text: $editingNoteLocal.content)
-                            .frame(height: 300)
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack {
+                                Spacer()
+                                
+                                DatePicker(selection: $editingNoteLocal.timestamp, in: ...Date.now, displayedComponents: .date) {
+                                    
+                                }
+                                
+                                Button("Open in Map", systemImage: "map") {
+                                    let placemark = MKPlacemark(coordinate: editingNote.coordinate)
+                                    let mapItem = MKMapItem(placemark: placemark)
+                                    mapItem.name = editingNote.title
+                                    mapItem.openInMaps()
+                                }.tint(Color.fromHex(editingNoteLocal.collection?.colorHex ?? Color.accentColor.toHex()))
+                                
+                                
+                                Button(action: {
+                                    // TODO: Share
+                                }) {
+                                    Label("Share", systemImage: "square.and.arrow.up")
+                                        .font(.system(size: 16)) // Adjust the size as needed
+                                }
+                                .tint(Color.accentColor)
+                                
+                                Button("Delete", systemImage: "trash") {
+                                    // TODO: Deletion
+                                    
+                                }.tint(Color.red)
+                                
+                                Spacer()
+                                
+                            }.buttonStyle(.bordered)
+                        }
+                        .overlay(
+                            HStack {
+                                LinearGradient(
+                                    gradient: Gradient(colors: [
+                                        Color(UIColor.systemBackground),
+                                        Color(UIColor.systemBackground).opacity(0)
+                                    ]),
+                                    startPoint: .leading,
+                                    endPoint: .trailing
+                                )
+                                .frame(width: 20)
+                                
+                                Spacer()
+                                
+                                LinearGradient(
+                                    gradient: Gradient(colors: [
+                                        Color(UIColor.systemBackground).opacity(0),
+                                        Color(UIColor.systemBackground)
+                                    ]),
+                                    startPoint: .leading,
+                                    endPoint: .trailing
+                                )
+                                .frame(width: 20)
+                            }
+                        )
                     }
+                    
+                    TextEditor(text: $editingNoteLocal.content)
+                        .frame(height: 300)
+                        .padding(.horizontal, 5)
+
+             
                 }
-//                if let lookaroundScene {
-//                    LookAroundPreview(initialScene: lookaroundScene)
-//                }
             }
-            
             .padding(10)
-//            .task(id: editingNoteLocal) {
-//                await fetchLookaroundPreview()
-//            }
+            
         }
     }
-    
-//    func fetchLookaroundPreview() async {
-//        lookaroundScene = nil
-//        let lookaroundRequest = MKLookAroundSceneRequest(coordinate: editingNoteLocal.coordinate)
-//        lookaroundScene = try? await lookaroundRequest.scene
-//    }
 }
 
 #Preview {
